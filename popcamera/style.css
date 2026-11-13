@@ -1,0 +1,127 @@
+/* PopCamera: printed like the app's own pages. Ink outlines, flat fills, shadows that are
+   the same shape moved down (never blurred), halftone dots. Light only, as the app is. */
+:root {
+  color-scheme: light;
+  --ink: #452e1f;
+  --ink-soft: rgba(69, 46, 31, 0.68);
+  --paper: #fff7e6;
+  --paper-edge: #e6d1ad;
+  --card: #fffef7;
+  --orange: #f06b14;
+  --orange-deep: #c25408;
+  --orange-lip: #853605;
+  --teal: #1b8c99;
+  --shadow: rgba(71, 36, 61, 0.42);
+  --line: 2.6px;
+  --round: "Hiragino Maru Gothic ProN", "Zen Maru Gothic", "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--round);
+  font-size: 16px;
+  line-height: 1.85;
+  font-feature-settings: "palt";
+  overflow-x: hidden;
+}
+a { color: var(--orange-deep); font-weight: 700; text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
+img { max-width: 100%; display: block; }
+
+/* The band across the top: orange with dots that grow toward its foot. */
+.band {
+  background:
+    radial-gradient(circle, rgba(196, 80, 8, 0.55) 0 2.6px, transparent 3px) 0 0 / 14px 14px,
+    var(--orange);
+  border-bottom: var(--line) solid var(--ink);
+  padding: 0 16px;
+}
+.band-in {
+  max-width: 680px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 16px 0;
+}
+.brand { display: flex; align-items: center; gap: 10px; color: var(--paper); text-decoration: none; font-size: 22px; font-weight: 800; letter-spacing: 0.01em; }
+.brand img { width: 42px; height: 42px; border-radius: 11px; border: var(--line) solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+.nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.nav a {
+  color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 800;
+  background: var(--card); border: 2px solid var(--ink); border-radius: 999px;
+  padding: 3px 11px; box-shadow: 0 3px 0 var(--ink);
+}
+.nav a[aria-current="page"] { background: var(--ink); color: var(--paper); box-shadow: 0 3px 0 var(--orange-lip); }
+
+.page { max-width: 680px; margin: 0 auto; padding: 0 16px 64px; }
+.eyebrow {
+  display: inline-block; margin: 32px 0 10px; padding: 2px 12px;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.14em;
+  color: var(--paper); background: var(--teal); border: 2px solid var(--ink); border-radius: 999px;
+}
+h1 { font-size: 30px; line-height: 1.4; font-weight: 800; margin: 0 0 8px; }
+h1 em { font-style: normal; color: var(--orange); -webkit-text-stroke: 1px var(--ink); paint-order: stroke fill; }
+.meta { font-size: 13px; color: var(--ink-soft); margin: 0 0 22px; font-weight: 700; }
+.lead { margin: 0 0 22px; }
+
+.card {
+  background: var(--card); border: var(--line) solid var(--ink); border-radius: 18px;
+  box-shadow: 0 6px 0 var(--shadow);
+  padding: 18px 20px; margin: 0 0 22px;
+}
+.card h2 { font-size: 17px; margin: 0 0 6px; line-height: 1.5; }
+.card p { margin: 0 0 10px; }
+.card p:last-child, .card ul:last-child { margin-bottom: 0; }
+.card.ad { border-color: var(--ink); background: #fff0dc; }
+
+/* Numbered sections, each on its own sheet of paper. */
+.sheet { display: grid; grid-template-columns: 34px 1fr; gap: 0 12px; }
+.sheet .num {
+  width: 30px; height: 30px; border-radius: 50%; margin-top: 2px;
+  display: grid; place-items: center; font-size: 13px; font-weight: 800;
+  color: var(--paper); background: var(--orange); border: 2px solid var(--ink);
+}
+.sheet > div { min-width: 0; }
+.sheet h3 { font-size: 15px; margin: 14px 0 4px; }
+.sheet ul { margin: 0 0 10px; padding-left: 1.2em; }
+.sheet li { margin: 0 0 4px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 4px 0 12px; }
+th, td { text-align: left; vertical-align: top; padding: 7px 8px; border-bottom: 1.5px dashed var(--paper-edge); }
+th { white-space: nowrap; font-weight: 800; }
+
+.qa h3 { font-size: 15px; margin: 16px 0 2px; }
+.qa h3:first-child { margin-top: 0; }
+.qa p { margin: 0 0 6px; }
+
+/* Screens from the App Store set, scrolling sideways inside their own strip. */
+.shots {
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin: 0 -16px 26px; padding: 4px 16px 12px;
+}
+.shots img {
+  flex: 0 0 auto; width: 170px; height: auto; scroll-snap-align: start;
+  border: var(--line) solid var(--ink); border-radius: 16px; box-shadow: 0 6px 0 var(--shadow);
+}
+
+.links { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 12px; }
+.links a {
+  display: block; text-align: center; text-decoration: none; font-size: 15px; font-weight: 800;
+  padding: 13px 18px; border-radius: 999px; border: var(--line) solid var(--ink);
+  color: #fff; background: var(--orange); box-shadow: 0 5px 0 var(--orange-lip);
+}
+.links a.quiet { color: var(--ink); background: var(--card); box-shadow: 0 5px 0 var(--paper-edge); }
+
+footer { margin-top: 44px; padding-top: 16px; border-top: 2px dashed var(--paper-edge); font-size: 12px; color: var(--ink-soft); }
+footer p { margin: 0 0 6px; }
+
+@media (min-width: 560px) {
+  h1 { font-size: 36px; }
+  .links { grid-template-columns: 1fr 1fr; }
+  .shots img { width: 200px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .links a, .nav a { transition: transform 90ms ease, box-shadow 90ms ease; }
+  .links a:active, .nav a:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--orange-lip); }
+}
